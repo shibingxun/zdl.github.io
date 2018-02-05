@@ -155,7 +155,7 @@
       
         <p>14:35</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下：</p>
-<p>![timeout]: /img/timeout.png</p>
+<p>![timeout]:(/img/timeout.png)</p>
 <h2 id="重启无法进入系统问题及分析"><a href="#重启无法进入系统问题及分析" class="headerlink" title="重启无法进入系统问题及分析"></a>重启无法进入系统问题及分析</h2><pre><code>1. 根据图片log信息判定，内核启动过程中无法找到root分区。
 2. 找不到root分区，首先判断grub.cfg里面的setting是否正确，对比发现与之前的设定相同。其次分析找不到硬盘，initrd需要存储驱动。之前安装系统时，也是通过外加驱动才识别到存储的。所以考虑是要额外添加raid存储卡驱动。
 </code></pre><h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><pre><code>1. 找到合适版本的驱动ko文件，如果没有现成的ko，则需要用源码编译驱动模块。
@@ -215,7 +215,7 @@ dracut /tmp/iii.img 4.9.6 --force   ----根据 /lib/modules/内核版本/ 生成
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/zhoumo/">zhoumo</a>
+      <a class="article-title" href="/zhoumo/">Weekend</a>
     </h1>
   
 
@@ -228,8 +228,8 @@ dracut /tmp/iii.img 4.9.6 --force   ----根据 /lib/modules/内核版本/ 生成
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>一个寻常的冬季周末，和爱人携孩子到滨河公园打乒乓球。打乒乓球的人不多，三组家庭吧。旁边是一群初中模样的孩子在踢足球。突然感觉莫名的放松。忘却了工作上、生活上的烦恼。感觉生活在一个小城里不过如此吧。
-</code></pre>
+        <p>一个寻常的冬季周末，和爱人携孩子到滨河公园打乒乓球。打乒乓球的人不多，三组家庭吧。旁边是一群初中模样的孩子在踢足球。突然感觉莫名的放松。忘却了工作上、生活上的烦恼。感觉生活在一个小城里不过如此吧。</p>
+
       
 
       
