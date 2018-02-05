@@ -154,17 +154,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>14:35</p>
-<p>##问题描述<br>CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下：</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下：</p>
 <p>![timeout]: img/timeout.png</p>
-<p>##重启无法进入系统问题及分析</p>
-<pre><code>1. 根据图片log信息判定，内核启动过程中无法找到root分区。
+<h2 id="重启无法进入系统问题及分析"><a href="#重启无法进入系统问题及分析" class="headerlink" title="重启无法进入系统问题及分析"></a>重启无法进入系统问题及分析</h2><pre><code>1. 根据图片log信息判定，内核启动过程中无法找到root分区。
 2. 找不到root分区，首先判断grub.cfg里面的setting是否正确，对比发现与之前的设定相同。其次分析找不到硬盘，initrd需要存储驱动。之前安装系统时，也是通过外加驱动才识别到存储的。所以考虑是要额外添加raid存储卡驱动。
-</code></pre><p>##解决问题</p>
-<pre><code>1. 找到合适版本的驱动ko文件，如果没有现成的ko，则需要用源码编译驱动模块。
+</code></pre><h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><pre><code>1. 找到合适版本的驱动ko文件，如果没有现成的ko，则需要用源码编译驱动模块。
 2. 将ko文件放到ramfs，方法有两种：
-###方法一
+### 方法一
 1) 将驱动源文件替换内核源码的驱动文件，重新make生成新的initramfs
-###方法二
+### 方法二
 2) 进入 /lib/modules/内核版本/, 将新生成的驱动 ko文件替换原驱动文件，或者放置新的驱动ko，然后执行下面两条命令：
 depmod -a -w 4.9.6    -----会自动检测驱动变化，并生成相关依赖
 dracut /tmp/iii.img 4.9.6 --force   ----根据 /lib/modules/内核版本/ 生成ramfs
