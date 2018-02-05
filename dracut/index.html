@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>dracut initqueue timeout | Neil&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="14:35 问题描述CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下： ![timeout]: img/timeout.png 重启无法进入系统问题及分析1. 根据图片log信息判定，内核启动过程中无法找到root分区。 2. 找不到root分区，首先判断grub.cfg">
+  <meta name="description" content="14:35 问题描述CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下： ![timeout]: /img/timeout.png 重启无法进入系统问题及分析1. 根据图片log信息判定，内核启动过程中无法找到root分区。 2. 找不到root分区，首先判断grub.cf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dracut initqueue timeout">
 <meta property="og:url" content="http://yoursite.com/dracut/index.html">
 <meta property="og:site_name" content="Neil&#39;s Blog">
-<meta property="og:description" content="14:35 问题描述CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下： ![timeout]: img/timeout.png 重启无法进入系统问题及分析1. 根据图片log信息判定，内核启动过程中无法找到root分区。 2. 找不到root分区，首先判断grub.cfg">
-<meta property="og:updated_time" content="2018-02-05T12:55:20.748Z">
+<meta property="og:description" content="14:35 问题描述CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下： ![timeout]: /img/timeout.png 重启无法进入系统问题及分析1. 根据图片log信息判定，内核启动过程中无法找到root分区。 2. 找不到root分区，首先判断grub.cf">
+<meta property="og:updated_time" content="2018-02-05T12:58:36.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dracut initqueue timeout">
-<meta name="twitter:description" content="14:35 问题描述CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下： ![timeout]: img/timeout.png 重启无法进入系统问题及分析1. 根据图片log信息判定，内核启动过程中无法找到root分区。 2. 找不到root分区，首先判断grub.cfg">
+<meta name="twitter:description" content="14:35 问题描述CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下： ![timeout]: /img/timeout.png 重启无法进入系统问题及分析1. 根据图片log信息判定，内核启动过程中无法找到root分区。 2. 找不到root分区，首先判断grub.cf">
   
     <link rel="alternative" href="/atom.xml" title="Neil&#39;s Blog" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
       
         <p>14:35</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>CentOS7.x 系统自带内核版本为3.10.x，为了支持NVMe over fabric功能需要升级系统内核为4.9.x，然而在升级完内核后，重启无法进去系统，错误信息如下：</p>
-<p>![timeout]: img/timeout.png</p>
+<p>![timeout]: /img/timeout.png</p>
 <h2 id="重启无法进入系统问题及分析"><a href="#重启无法进入系统问题及分析" class="headerlink" title="重启无法进入系统问题及分析"></a>重启无法进入系统问题及分析</h2><pre><code>1. 根据图片log信息判定，内核启动过程中无法找到root分区。
 2. 找不到root分区，首先判断grub.cfg里面的setting是否正确，对比发现与之前的设定相同。其次分析找不到硬盘，initrd需要存储驱动。之前安装系统时，也是通过外加驱动才识别到存储的。所以考虑是要额外添加raid存储卡驱动。
 </code></pre><h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><pre><code>1. 找到合适版本的驱动ko文件，如果没有现成的ko，则需要用源码编译驱动模块。
